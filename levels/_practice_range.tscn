@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://dgnvwtalvncj6"]
+
+[ext_resource type="PackedScene" uid="uid://c0d6m33eiv1id" path="res://assets/blends/levels/flat_floor/flat_floor.blend" id="1_di64x"]
+[ext_resource type="PackedScene" uid="uid://cclld30pxfosg" path="res://scenes/vehicles/rover_a_1.tscn" id="2_ood1d"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ogcny"]
+sky_top_color = Color(0.333333, 0.376471, 0.878431, 1)
+sky_horizon_color = Color(1, 0.478431, 0.368627, 1)
+sky_curve = 0.3
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(0.388235, 0.27451, 0.0941176, 1)
+sun_curve = 0.184672
+
+[sub_resource type="Sky" id="Sky_k5mdv"]
+sky_material = SubResource("ProceduralSkyMaterial_ogcny")
+
+[sub_resource type="Environment" id="Environment_iut1k"]
+background_mode = 2
+sky = SubResource("Sky_k5mdv")
+ambient_light_source = 3
+reflected_light_source = 2
+tonemap_mode = 2
+ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
+sdfgi_enabled = true
+glow_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.01
+
+[node name="PracticeRange" type="Node3D"]
+
+[node name="Level" type="Node3D" parent="."]
+
+[node name="flat_floor" parent="Level" instance=ExtResource("1_di64x")]
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
+transform = Transform3D(0.5, -0.433013, 0.75, 0, 0.866025, 0.5, -0.866025, -0.25, 0.433013, 0, 16.8549, 0)
+light_color = Color(1, 0.956863, 0.815686, 1)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
+environment = SubResource("Environment_iut1k")
+
+[node name="Rover_A1" parent="." instance=ExtResource("2_ood1d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.583732, 3.06001, 4.58999)

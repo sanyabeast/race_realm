@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://cvgycskffewva"]
+
+[ext_resource type="Script" path="res://scripts/_test_vehicle.gd" id="1_m5je3"]
+[ext_resource type="Script" path="res://scripts/wheel.gd" id="2_p8g6s"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0r2n3"]
+size = Vector3(2, 1, 4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tg5fn"]
+size = Vector3(2, 1, 4)
+
+[node name="RigidBody3D" type="RigidBody3D"]
+script = ExtResource("1_m5je3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_0r2n3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("BoxMesh_tg5fn")
+
+[node name="CameraRoot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraRoot"]
+transform = Transform3D(1, 0, 0, 0, 0.905235, 0.424911, 0, -0.424911, 0.905235, 0, 1.97, 3.945)
+
+[node name="WheelFL" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, 0, -1.7)
+script = ExtResource("2_p8g6s")
+
+[node name="WheelFR" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1, 0, -1.7)
+
+[node name="WheelRR" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1, 0, 1.7)
+
+[node name="WheelRL" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, 0, 1.7)
